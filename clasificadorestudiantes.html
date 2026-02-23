@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clasificador de Estudiantes</title>
+</head>
+<body>
+  <h2>Clasificador de Estudiantes</h2>
+
+  <label>Nota Matemáticas: </label>
+  <input type="number" id="notaMatematicas" value="90"><br><br>
+
+  <label>Nota Ciencias: </label>
+  <input type="number" id="notaCiencias" value="80"><br><br>
+
+  <label>Nota Literatura: </label>
+  <input type="number" id="notaLiteratura" value="85"><br><br>
+
+  <button onclick="clasificar()">Calcular Clasificación</button>
+
+  <h3 id="resultado"></h3>
+
+  <script>
+    function clasificar() {
+      // Obtener valores de los campos
+      let notaMatematicas = parseFloat(document.getElementById("notaMatematicas").value);
+      let notaCiencias = parseFloat(document.getElementById("notaCiencias").value);
+      let notaLiteratura = parseFloat(document.getElementById("notaLiteratura").value);
+
+      // Calcular promedio
+      let promedio = (notaMatematicas + notaCiencias + notaLiteratura) / 3;
+
+      // Verificar condiciones
+      let clasificacion;
+      if (
+        promedio >= 70 &&
+        notaMatematicas >= 60 &&
+        notaCiencias >= 60 &&
+        notaLiteratura >= 60 &&
+        (notaMatematicas >= 90 || notaCiencias >= 90 || notaLiteratura >= 90)
+      ) {
+        clasificacion = "Excelente";
+      } else {
+        clasificacion = "No excelente";
+      }
+
+      // Mostrar resultado
+      document.getElementById("resultado").textContent =
+        `promedio: ${promedio.toFixed(1)} – clasificación: ${clasificacion}`;
+    }
+  </script>
+</body>
+</html>
